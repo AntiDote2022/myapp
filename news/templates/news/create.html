@@ -1,0 +1,25 @@
+{% extends 'myapp1/layout.html' %}
+
+    {% block title %}Добовление новостей{% endblock %}
+
+        {% block body %}
+
+            <div class="text-bg-dark p-3 fs-1 text">Добавление статьи</div>
+
+                <div class="news">
+                    <p class="fs-5 text">
+
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.title }}<br>
+                        {{ form.anons }}<br>
+                        {{ form.f_text }}<br>
+                        {{ form.date }}<br>
+                        <span>{{ error }}</span>
+                    <button class="btn btn-success" type="submit">Добавить новость</button>
+                    </form>
+
+                    </p>
+                </div>
+
+        {% endblock %}

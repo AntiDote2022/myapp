@@ -1,0 +1,16 @@
+{% extends 'myapp1/layout.html' %}
+
+    {% block title %}Комметировать{% endblock %}
+
+        {% block body %}
+
+        <div class="text-bg-dark p-3 fs-1 text">Комменты</div>
+        <div class="news">
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ comment }}
+                {{ now.title }}
+            </form>
+        </div>
+        {% endblock %}

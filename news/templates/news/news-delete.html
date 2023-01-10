@@ -1,0 +1,19 @@
+{% extends 'myapp1/layout.html' %}
+
+    {% block title %}Удаление новостей{% endblock %}
+
+        {% block body %}
+
+            <div class="text-bg-dark p-3 fs-1 text">Удалить новость</div>
+                <div class="news">
+                    <p class="fs-5 text">
+                    Вы уверены что хотите удлаить новость?
+                    <form method="post">
+                        {% csrf_token %}
+                    <button class="btn btn-success" type="submit">Да, удалить новость</button>
+                    </form>
+
+                    </p>
+                </div>
+
+        {% endblock %}
