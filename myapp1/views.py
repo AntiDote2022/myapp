@@ -8,3 +8,7 @@ def index_page(request):
 
 def about_page(request):
     return render(request, 'myapp1/about.html')
+
+
+def account_login(request):
+    return render(request, 'account/login.html')
