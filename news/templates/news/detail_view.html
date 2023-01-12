@@ -7,29 +7,33 @@
         <div class="text-bg-dark p-3 fs-1 text">Новость: {{ new.title }}</div>
             <div class="news">
                 <p>{{ new.f_text }}</p>
-                <span>Дата создания: {{ new.date }}</span>
+                <span class="datatime">Дата создания: {{ new.date }}</span>
                 <a href="{% url 'news-delete' new.id %}" class="btn btn-danger">Удалить</a>
                 <a href="{% url 'news-update' new.id %}" class="btn btn-warning">Редактировать</a>
                 <br><br>
-                Комментарии:
-                <hr>
+                Комментарии ({{ comment_c }}):
+                <br><br>
                 {% for com in comment %}
                 <P>
                     <b>{{ com.kom_name }}</b><br>
                         {{ com.kom_text }}
-                        <span>{{ com.created }}</span>
+                    <span class="datatime">{{ com.created }}</span>
                 </p>
-                <hr>
+                <br>
                 {% endfor %}
 
-                <p>
-                <form method="POST" action="">
+                <div class="mb-3">
+                <form method="POST">
                     {% csrf_token %}
-                    {{ form }}
+                    {{ form.kom_name }}
+
                 <br>
-                <button class="btn btn-success" type="submit">Добавить коммент</button>
+                <br>
+                    {{ form.kom_text }}
+                <br><br>
+                <button class="btn btn-outline-light me-2 btn btn-lg btn-light fw-bold border-white bg-white" type="submit">Добавить коммент</button>
                 </form>
-                </p>
+                </div>
             </div>
 
         {% endblock %}

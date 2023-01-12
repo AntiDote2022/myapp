@@ -1,30 +1,63 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'myapp1/css/myapp1.css' %}">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>{% block title %}{% endblock %}</title>
-</head>
-<body>
-    <aside class="block-left">
-        <img src="{% static 'myapp1/img/logo.png' %}" alt="TanCons">
-        <span class="logo">TanCons</span>
-        <h3>Навигация</h3>
-        <ul>
-            <a href="{% url 'home' %}"><li><i class="x-circle-fill"></i>Главная</li></a>
-            <a href="{% url 'news_home' %}"><li><i class="fa-address-book"></i>Новости</li></a>
-            <a href="{% url 'about' %}"><li><i class="fa-solid fa-address-card"></i>О нас</li></a>
-            <a href=""><li><i class="fa-solid fa-address-book"></i>Контакты</li></a>
-            <a href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить новость</button></li></a>
-        </ul>
-    </aside>
-    <main class="block-right">
-    {% block body %}
-    {% endblock %}
-    </main>
 
-</body>
+{% load i18n %}
+{% load account %}
+
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+    <head>
+        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content="Hugo 0.108.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'myapp1/css/myapp1.css' %}">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+
+    <body class="d-flex h-100 text-center text-bg-dark">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="mb-auto">
+                <div>
+                    <h3 class="float-md-start mb-0">TanCons</h3>
+                    <nav class="nav nav-masthead justify-content-center float-md-end">
+                          <a href="{% url 'home' %}" class="nav-link fw-bold py-1 px-0 active condary" aria-current="page">Главная</a>
+                          <a href="{% url 'news_home' %}" class="nav-link fw-bold py-1 px-0 ">Новости</a>
+                          <a href="{% url 'about' %}" class="nav-link fw-bold py-1 px-0 ">О нас</a>
+
+                          {% if user.is_authenticated %}
+                          <span class="nav-link fw-bold py-1 px-3 ">
+                              {{ user.username }}
+                          </span>
+
+                          <a class="btn btn-outline-light me-2 btn btn-lg btn-light fw-bold border-white bg-white" href="{% url 'account_logout' %}">Выход</a>
+
+                          {% else%}
+                              <a class="btn btn-outline-light me-2" href="{% url 'account_login' %}">Вход</a>
+                              <a class="btn btn-warning" href="{% url 'account_signup' %}">Регистрация</a>
+                          {% endif %}
+                    </nav>
+
+                </div>
+            </header>
+
+            <h1>{% block page_title %}{% endblock %}</h1>
+
+            <main ="px-3">
+                <p class="lead">
+                    {% block body %}
+                    {% endblock %}
+                </p>
+            </main>
+
+            <footer class="mt-auto text-white-50">
+                <p>Cover template for <a href="http://127.0.0.1:8000" class="text-white">TanCons</a>, by Nur</p>
+            </footer>
+        </div>
+
+
+
+    </body>
 </html>
+

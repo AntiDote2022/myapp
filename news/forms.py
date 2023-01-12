@@ -37,12 +37,13 @@ class CommentsForm(ModelForm):
 
         widgets = {
             "kom_name": TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Ваше имя'
+                'class': 'btn btn-outline-light me-2 btn btn-lg btn-light fw-bold border-white bg-white',
+                'placeholder': 'Ваше имя',
+                'width': '20%'
 
             }),
             "kom_text": Textarea(attrs={
-                'class': 'form-control',
+                'class': 'btn btn-outline-light me-2 btn btn-lg btn-light fw-bold border-white bg-white',
                 'placeholder': 'Текст'
             }),
 

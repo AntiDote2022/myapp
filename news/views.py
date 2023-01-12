@@ -6,7 +6,9 @@ from django.views.generic import DetailView, UpdateView, DeleteView
 
 def news_home(request):
     new = Texts.objects.order_by('-date')
-    return render(request, 'news/news_home.html', {'news': new})
+    comment = Comments.objects.filter(numbers=new)
+    comment_count = comment.count()
+    return render(request, 'news/news_home.html', {'news': new, 'comment_c': comment_count})
 
 
 class NewsUpdateView(UpdateView):
@@ -46,6 +48,7 @@ def add_comment(request, pk):
 
     post = get_object_or_404(Texts, id=pk)
     comment = Comments.objects.filter(numbers=pk)
+    comment_count = comment.count()
 
     if request.method == 'POST':
         cform = CommentsForm(data=request.POST)
@@ -59,4 +62,5 @@ def add_comment(request, pk):
     return render(request, 'news/detail_view.html', {
         'new': post,
         'comment': comment,
+        'comment_c': comment_count,
         'form': cform})

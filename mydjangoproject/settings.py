@@ -34,15 +34,16 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.messages',
-    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
-    'myapp1',
-    'news',
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+    'myapp1',
+    'news',
+
+
 ]
 
 
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'mydjangoproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,6 +125,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL = "/"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
