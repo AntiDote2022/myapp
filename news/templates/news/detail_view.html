@@ -7,7 +7,10 @@
         <div class="text-bg-dark p-3 fs-1 text">Новость: {{ new.title }}</div>
             <div class="news">
                 <p>{{ new.f_text }}</p>
+                <span class="datatime">Автор: {{ new.author }},  </span>
                 <span class="datatime">Дата создания: {{ new.date }}</span>
+                <br>
+                <br>
                 <a href="{% url 'news-delete' new.id %}" class="btn btn-danger">Удалить</a>
                 <a href="{% url 'news-update' new.id %}" class="btn btn-warning">Редактировать</a>
                 <br><br>

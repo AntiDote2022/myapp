@@ -1,14 +1,16 @@
+from django.contrib import auth
+from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Texts, Comments
+from .models import Texts
+from .models import Comments
 from .forms import TextsForm, CommentsForm
 from django.views.generic import DetailView, UpdateView, DeleteView
 
 
 def news_home(request):
-    new = Texts.objects.order_by('-date')
-    comment = Comments.objects.filter(numbers=new)
-    comment_count = comment.count()
-    return render(request, 'news/news_home.html', {'news': new, 'comment_c': comment_count})
+    new = Texts.objects.annotate(num_comments=Count('comments_texts')).all()
+
+    return render(request, 'news/news_home.html', {'news': new})
 
 
 class NewsUpdateView(UpdateView):
@@ -29,7 +31,9 @@ def create(request):
     if request.method == 'POST':
         form = TextsForm(request.POST)
         if form.is_valid():
-            form.save()
+            new = form.save(commit=False)
+            new.author = request.user
+            new.save()
             return redirect('news_home')
         else:
             error = 'Форма заполнена не верно'

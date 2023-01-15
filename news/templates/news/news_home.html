@@ -11,10 +11,15 @@
 
 
                     <h3 class="fs-2 text">{{ now.title }}</h3>
-                    <p class="fs-5 text">{{ now.anons }}</p>
+                    <p class="fs-5 text">
+                        {{ now.anons }}
+                        <span class="datatime">
+                            {{ now.date }}
+                            {{ now.author }}
+                        </span>
+                    </p>
                     <a href="{% url 'news-detail' now.id %}" class="btn btn-lg btn-light fw-bold border-white bg-white">Читать полностью</a>
-                    Комментарии ({{ comment_c }}):
-                    <span class="datatime">{{ now.date }}</span>
+                    <a href="{% url 'news-detail' now.id %}" class="btn btn-lg btn-light fw-bold border-white bg-white">Комментарии ({{ now.num_comments }})</a >
                     <br>
                     <br>
 
