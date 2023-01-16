@@ -59,6 +59,7 @@ def add_comment(request, pk):
         if cform.is_valid():
             comment = cform.save(commit=False)
             comment.numbers_id = pk
+            comment.author = request.user
             comment.save()
             return redirect('news-detail', pk)
     else:

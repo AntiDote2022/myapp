@@ -18,9 +18,9 @@
                 <br><br>
                 {% for com in comment %}
                 <P>
-                    <b>{{ com.kom_name }}</b><br>
-                        {{ com.kom_text }}
-                    <span class="datatime">{{ com.created }}</span>
+                    <b>{{ com.author }}:</b>
+                    {{ com.kom_text }}
+                    <small class="datatime">{{ com.created }}</small>
                 </p>
                 <br>
                 {% endfor %}
@@ -29,7 +29,6 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form.kom_name }}
-
                 <br>
                 <br>
                     {{ form.kom_text }}

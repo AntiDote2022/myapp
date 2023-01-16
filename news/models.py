@@ -7,7 +7,7 @@ class Texts(models.Model):
     anons = models.CharField('Анонс', max_length=250)
     f_text = models.TextField('Статья')
     author = models.ForeignKey(User, verbose_name='автор', on_delete=models.CASCADE, blank=True, null=True, related_name='user_name')
-    date = models.DateTimeField('Дата и время')
+    date = models.DateTimeField('Дата и время' )
 
     def __str__(self):
         return self.title
@@ -21,7 +21,7 @@ class Texts(models.Model):
 
 class Comments(models.Model):
     numbers = models.ForeignKey(Texts, verbose_name='ид новости', on_delete=models.CASCADE, blank=True, null=True, related_name='comments_texts')
-    kom_name = models.CharField('Имя комментатора', max_length=20, blank=False)
+    author = models.ForeignKey(User, verbose_name='автор', on_delete=models.CASCADE, blank=True, null=True, related_name='user')
     kom_text = models.TextField('Текст комментария', null=True)
     created = models.DateTimeField(auto_now=True)
     def __str__(self):

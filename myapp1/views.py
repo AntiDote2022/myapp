@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myapp1.models import Worker
+
 
 
 def index_page(request):
